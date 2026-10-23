@@ -19,13 +19,18 @@
   <link rel="preconnect" href="https://images.unsplash.com">
   <!-- La foto principal de la portada se pide primero (es lo más grande que ve el cliente al entrar) -->
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1767396858128-85b1262a7677?auto=format&fit=crop&w=1100&h=1400&q=70" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- Tipografías sin bloquear el primer pintado (display=swap muestra texto mientras cargan) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;700;800&display=swap"></noscript>
 
   <!-- Librerías: Phosphor Icons (íconos) + AOS (animaciones al hacer scroll) -->
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="vendor/aos/aos.css">
 
+  <!-- Los scripts del final se piden ya: así llenan la página antes del primer pintado -->
+  <link rel="preload" href="vendor/aos/aos.js" as="script">
+  <link rel="preload" href="js/config.js" as="script">
+  <link rel="preload" href="js/main.js" as="script">
+  <link rel="stylesheet" href="css/iconos.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -169,7 +174,7 @@
         <header class="seccion__head" data-aos="fade-up">
           <span class="eyebrow">Colección Primavera 2026</span>
           <h2>Elige tu prenda, tu color y <em>tu talla</em></h2>
-          <p>Toca una prenda para ver sus colores y tallas disponibles. Guarda tus favoritas con el <i class="ph-fill ph-heart" aria-label="corazón"></i>.</p>
+          <p>Toca una prenda para ver sus colores y tallas disponibles. Guarda tus favoritas con el <i class="ph-fill ph-heart" role="img" aria-label="corazón"></i>.</p>
           <button class="btn-talla" type="button" data-abrir-talla><i class="ph ph-ruler" aria-hidden="true"></i><span id="mi-talla-txt">Encuentra tu talla en 30 segundos</span></button>
         </header>
 
@@ -592,7 +597,7 @@
   <!-- ============ AVISO (toast) ============ -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="vendor/aos/aos.js"></script>
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
   <script src="js/demo-aviso.js"></script>
